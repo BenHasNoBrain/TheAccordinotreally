@@ -59,7 +59,7 @@ void sendMIDI_KB() {
 void sendMIDI_Bass()  {
   for (byte i = 0; i < 9; i++)  {
     if (bassOn[i] != 0) {
-      //MIDI.sendNoteOn(bassOn[i], pressureVelocity, 2);
+      MIDI.sendNoteOn(bassOn[i], pressureVelocity, 2);
     }
   }
 
@@ -70,7 +70,7 @@ void sendMIDI_Bass()  {
   }
   for (byte i = 0; i < 9; i++)  {
     if (bassOff[i] != 0)  {
-      //MIDI.sendNoteOff(bassOff[i], 0, 2);
+      MIDI.sendNoteOff(bassOff[i], 0, 2);
       bassOff[i] = 0;
     }
   }
