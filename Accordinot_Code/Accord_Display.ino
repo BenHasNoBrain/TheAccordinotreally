@@ -13,7 +13,7 @@ void setup_Display()  {
 }
 
 void display_stuff()  {
-  if ((millis() - tme) > 100)  {
+  if ((millis() - tme) > 10)  {
     display.clearDisplay();
     display.setCursor(0, 3);
     display.println("The Accordinotreally");
@@ -47,13 +47,14 @@ void display_bass() {
   display.clearDisplay();
   display.setCursor(0, 5);
     
-  for (byte i = 0; i < 3; i++)  {
-    display.print(bassList[i]); display.print(", ");
+  for (byte i = 0; i < 5; i++)  {
+    display.print(bassOn[i]); display.print(", ");
   }
   display.setCursor(0, 15);
-  for (byte i = 0; i < 3; i++)  {
-    display.print(bassCurrentlyOn[i]); display.print(", ");
+  for (byte i = 0; i < 5; i++)  {
+    display.print(bassOff[i]); display.print(", ");
   }
+  display.setCursor(0, 15);
 }
 
 void display_panik()  {

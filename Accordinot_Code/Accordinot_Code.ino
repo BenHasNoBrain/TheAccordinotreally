@@ -45,21 +45,15 @@ byte fingers[5] = {0, 0, 0, 0, 0};
 byte currentlyOn[5] = {0, 0, 0, 0, 0};
 byte currentlyCount = 0;
 
+
 //Bass
-byte bassOn[3][3] = {
-  {0, 0, 0},
-  {0, 0, 0},
-  {0, 0, 0}
-};
-byte bassOnCurrently[3][3] = {
-  {0, 0, 0},
-  {0, 0, 0},
-  {0, 0, 0}
-};
-//Yes, I know it's terrible :P
+byte bassOn[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 int keyModifier = 0;
 uint16_t bassList[3] = {0, 0, 0};
 uint16_t bassCurrentlyOn[3] = {0, 0, 0};
+bool bassSent[3] = {0, 0, 0};
+byte bassOff[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+
 
 
 

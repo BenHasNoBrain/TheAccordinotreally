@@ -15,8 +15,6 @@ void setup_Midi() {
 }
 
 void midi_stuff() {
-  sendMIDI_KB();
-  sendMIDI_Bass();
   if (bellowsMode)  {
     if (pressureConnected)  {
       setPressure();
@@ -24,6 +22,9 @@ void midi_stuff() {
   } else  {
     pressureVelocity = 127;
   }
+
+  sendMIDI_KB();
+  sendMIDI_Bass();
 
   if (volChange)  {
     if (mainVolume > 100) {mainVolume = 100;} else if (mainVolume < 0)  {mainVolume = 0;}
@@ -56,37 +57,21 @@ void sendMIDI_KB() {
     
 }
 void sendMIDI_Bass()  {
-  for (byte i = 0; i < 3; i++)  {
-    if ((bassList[i] != 0) && (bassList[i] == bassCurrentlyOn[i]))  {
-      for (byte j = 0; j < 3; j++)  {
-        for (byte k = 0; k < 3; k++)  {
-          MIDI.sendNoteOn(bassOn[j][k], pressureVelocity, 2);
-        }
-      }
-    } else if (bassList[i] != bassCurrentlyOn[i])  {  //Turn off bassOnCurrently[i][0/1/2]
-      byte bassOverlapNote = 0;
-      byte bassOffs[3] = {0, 0, 0};
-      for (byte j = 0; j < 3; j++)  {
-        bassOffs[j] = bassOnCurrently[i][j];
-      }
-      for (byte j = 0; j < 3; j++)  { //Check each other bundle in bassList, except current "i"
-        if (j != i) {
-          for (byte k = 0; k < 3; k++)  {
-            for (byte m = 0; m < 3; m++)  {
-              if (bassOffs[m] == bassOnCurrently[j][k]) {
-                bassOffs[m] = 0;
-              }
-            }
-          }
-        }
-      }
+  for (byte i = 0; i < 9; i++)  {
+    if (bassOn[i] != 0) {
+      //MIDI.sendNoteOn(bassOn[i], pressureVelocity, 2);
+    }
+  }
 
-      for (byte j = 0; j < 3; j++)  {
-        MIDI.sendNoteOff(bassOffs[j], 0, 2);
-        bassOnCurrently[i][j] = 0;
-        bassList[i] = 0;
-      }
-
+  for (byte i = 0; i < 9; i++)  {
+    if (bassOff[i] == bassOn[i])  {
+      bassOff[i] = 0;
+    }
+  }
+  for (byte i = 0; i < 9; i++)  {
+    if (bassOff[i] != 0)  {
+      //MIDI.sendNoteOff(bassOff[i], 0, 2);
+      bassOff[i] = 0;
     }
   }
 }
