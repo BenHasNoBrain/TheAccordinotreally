@@ -27,7 +27,7 @@ void display_stuff()  {
         display.print("Bellows: "); display.print(bellowsMode); display.print(" | PS: "); display.print(pressureSensitivity);
         break;
       case 2:
-        display.print("p0: "); display.print(pressureZero); display.print("  |  fltr: "); display.print(filter, 2);
+        display.print("p0: "); display.print(pressureZero); display.print("  |  val: "); display.print(abs(currentPressure - averagePressure));
         break;
       case 3:
         display_bass();
