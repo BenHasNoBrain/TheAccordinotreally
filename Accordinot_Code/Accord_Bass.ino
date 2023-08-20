@@ -210,7 +210,7 @@ void applyChords()  {
     if (bassSent[i] == 0) {
       if ((bassList[i] != 0) && (bassCurrentlyOn[i] != 0)) {
         if (bassList[i] == bassCurrentlyOn[i])  { //bassList[x, y, z] vs bassCurrentlyOn[x, y, z]
-          byte tmp[3] = {bassValues[bassList[i]][0], bassValues[bassList[i]][1], bassValues[bassList[i]][2]};
+          int tmp[3] = {bassValues[bassList[i]][0] + keyModifier, bassValues[bassList[i]][1] + keyModifier, bassValues[bassList[i]][2] + keyModifier};
           for (byte j = 0; j < 3; j++)  {
             if (tmp[j] != 0)  {
               //Check if note is already playing
@@ -237,7 +237,7 @@ void applyChords()  {
         }
         bassSent[i] = 1;  //Once note is sent ON, then mark as sent to not repeat for held note
       } else if (bassList[i] != bassCurrentlyOn[i]) {
-          byte tmp[3] = {bassValues[bassCurrentlyOn[i]][0], bassValues[bassCurrentlyOn[i]][1], bassValues[bassCurrentlyOn[i]][2]};
+          int tmp[3] = {bassValues[bassCurrentlyOn[i]][0] + keyModifier, bassValues[bassCurrentlyOn[i]][1] + keyModifier, bassValues[bassCurrentlyOn[i]][2] + keyModifier};
           //If different, i.e. if bassList = 0 and bassCurrentlyOn = x:
           for (byte j = 0; j < 3; j++)  {
             if (tmp[j] != 0)  {

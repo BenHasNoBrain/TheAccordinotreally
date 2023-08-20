@@ -74,4 +74,6 @@ void sendMIDI_Bass()  {
       bassOff[i] = 0;
     }
   }
+
+  //NOTE TO SELF: One potential (currently working) fix for the hung Bass problem: 1. {Tools -> Optimize -> Optimize(-O) from Small(-Os)}, 2. {CPU Speed -> 125MHZ from 133MHZ}
 }
