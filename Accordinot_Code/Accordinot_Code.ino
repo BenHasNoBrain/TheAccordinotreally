@@ -82,7 +82,7 @@ void loop() {
     scan_Pressure();
   }  
   scan_KB();
-  scan_Bass();
+  //scan_Bass();
   midi_stuff();
   display_stuff();
 

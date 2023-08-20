@@ -36,7 +36,9 @@ void setup_Bass()  {
   pinMode(clockPin, INPUT_PULLUP);
   pinMode(dataPin, INPUT_PULLUP);
 
-  attachInterrupt(digitalPinToInterrupt(CLOCK), scan_Bass, FALLING);
+  attachInterrupt(digitalPinToInterrupt(clockPin), scan_Bass, FALLING);
+
+  scan_Bass();
 }
 
 void scan_Bass()  {
