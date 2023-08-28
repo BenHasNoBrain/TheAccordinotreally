@@ -7,6 +7,12 @@ Repo for the code driving _The Accordinotreally_, a cheap and silly DIY project 
 ## Changelog
 ### 12/8/23
 * First commit, containing 3 weeks of initial code development (working prototype)
+### 13/8/23
+* Added new branch for reworking the Bass system, specifically in scanning and MIDI sending
+### 21/8/23
+* Fixed Bass system hanging (i.e. becoming completely unresponsive, while the rest of the system was fine) via RP2040 settings, see `Accord_Midi: 78`. Modifications to rpessure sensing + displaying.
+### 28/8/23
+* Attempt to fix pressure system: changed MIDI ControlChange from aftertouch to channel volume. Re-added `panik` functionality.
 
 |   Known bugs  |   Description |
 |   ---         |   ---         |

@@ -40,8 +40,11 @@ void midi_stuff() {
 
 void setPressure()  {
   pressureVelocity = map(currentPressure, 0, pressureSensitivity, 0, 127);  //Needs to be here otherwise fluctuates all over the place
-  MIDI.sendAfterTouch(pressureVelocity, 1);
-  MIDI.sendAfterTouch(pressureVelocity, 2);
+  //MIDI.sendAfterTouch(pressureVelocity, 1);
+  //MIDI.sendAfterTouch(pressureVelocity, 2);
+
+  MIDI.sendControlChange(7, pressureVelocity, 1);
+  MIDI.sendControlChange(7, pressureVelocity, 2);
 }
 
 void sendMIDI_KB() {
