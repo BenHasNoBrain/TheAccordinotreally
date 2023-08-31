@@ -26,14 +26,6 @@ void midi_stuff() {
   sendMIDI_KB();
   sendMIDI_Bass();
 
-  if (volChange)  {
-    if (mainVolume > 100) {mainVolume = 100;} else if (mainVolume < 0)  {mainVolume = 0;}
-      MIDI.send(midi::ControlChange, 0x07, map(mainVolume, 0, 100, 0, 127), 1);
-      MIDI.send(midi::ControlChange, 0x07, map(mainVolume, 0, 100, 0, 127), 2);
-      volChange = false;
-  }
-
-
   MIDI.read();
 }
 

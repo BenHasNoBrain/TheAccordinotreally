@@ -23,7 +23,8 @@ MIDI_CREATE_INSTANCE(Adafruit_USBD_MIDI, usb_midi, MIDI);
 //Global
 long averagePressure;             /*display */
 bool bellowsMode = false;         /*display */
-int pressureSensitivity = 25;    /*display */
+const int defaultPressureSensitivity = 80;
+int pressureSensitivity = defaultPressureSensitivity;    /*display */
 int pressureZero = 3;            /*display somewhere*/ //Lower bound
 long currentPressure = 0;         //Raw reading mapped 0-250
 int pressureVelocity = 0;         //currentPressure mapped 0-127, value sent to MIDI

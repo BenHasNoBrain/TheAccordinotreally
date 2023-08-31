@@ -5,8 +5,8 @@ void calibratePressureSensor()  {
     /* Default settings from datasheet. */
     bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     /* Operating Mode. */
                     Adafruit_BMP280::SAMPLING_NONE,     /* Temp. oversampling */
-                    Adafruit_BMP280::SAMPLING_X8,    /* Pressure oversampling */
-                    Adafruit_BMP280::FILTER_X2,      /* Filtering. */
+                    Adafruit_BMP280::SAMPLING_X2,    /* Pressure oversampling */
+                    Adafruit_BMP280::FILTER_NONE,      /* Filtering. */
                     Adafruit_BMP280::STANDBY_MS_500    /* Standby time. */
     );
 
@@ -26,7 +26,7 @@ void calibratePressureSensor()  {
 
 void scan_Pressure()  {
   //Actual values peak at 300, 500 if pushing.
-  long getReading = abs(bmp.readPressure() - averagePressure) - pressureZero;
+  long getReading = abs(bmp.readPressure() - averagePressure - pressureZero);
   getReading = constrain(getReading, 0, pressureSensitivity);
 
   //currentPressure = (currentPressure * nfilter) + (getReading * filter);

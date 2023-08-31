@@ -53,7 +53,7 @@ void scan_Bass()  {
         return;
         break;
       case 108: //HOME
-        pressureSensitivity = 250;
+        pressureSensitivity = defaultPressureSensitivity;
         dispMode = 1;
         return;
         break;
@@ -261,7 +261,7 @@ void applyChords()  {
 void panik()  {
   MIDI.sendControlChange(123, 0, 1);
   MIDI.sendControlChange(123, 0, 2);
-  
+
   for (int i = 0; i < 9; i++) {
     bassOn[i] = 0;
     bassOff[i] = 0;
@@ -269,6 +269,6 @@ void panik()  {
   for (int i = 0; i < 3; i++) {
     bassList[i] = 0;
     bassCurrentlyOn[i] = 0;
-    bassSend[i] = 0;
+    bassSent[i] = 0;
   }
 }
