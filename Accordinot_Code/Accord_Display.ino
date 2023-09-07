@@ -27,10 +27,13 @@ void display_stuff()  {
         display.print("Bellows: "); display.print(bellowsMode); display.print(" | PS: "); display.print(pressureSensitivity);
         break;
       case 2:
-        display.print("p0: "); display.print(pressureZero); display.print("  |  val: "); display.print(abs(currentPressure - averagePressure));
+        display.print("p0: "); display.print(pressureZero); display.print("  |  val: "); display.print(abs(currentPressure - pressureDiff));
         break;
       case 3:
         display_bass();
+        break;
+      case 4:
+        display_pressure();
         break;
     }
     
@@ -66,4 +69,12 @@ void display_panik()  {
     tme = millis() + 1100;
     panikMode = false;
   }
+}
+
+void display_pressure() {
+  display.clearDisplay();
+  display.setCursor(0, 5);
+  display.print(pressureDiff);
+  display.setCursor(0, 15);
+  display.print(currentPressure);
 }

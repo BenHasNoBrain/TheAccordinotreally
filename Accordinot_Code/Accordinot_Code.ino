@@ -13,7 +13,8 @@
 #include <Adafruit_SSD1306.h>
 
 //Initialisations
-Adafruit_BMP280 bmp;
+Adafruit_BMP280 bmp1;
+Adafruit_BMP280 bmp2;
 Adafruit_SSD1306 display(128, 32, &Wire, -1); //Width, Height, Wire, ?
 Adafruit_USBD_MIDI usb_midi;
 Adafruit_USBD_CDC USBSer1;
@@ -21,21 +22,23 @@ Adafruit_USBD_CDC USBSer1;
 MIDI_CREATE_INSTANCE(Adafruit_USBD_MIDI, usb_midi, MIDI);
 
 //Global
-float averagePressure;             /*display */
-bool bellowsMode = false;         /*display */
-const int defaultPressureSensitivity = 80;
-int pressureSensitivity = defaultPressureSensitivity;    /*display */
-int pressureZero = 3;            /*display somewhere*/ //Lower bound
-float currentPressure = 0;         //Raw reading mapped 0-250
-int pressureVelocity = 0;         //currentPressure mapped 0-127, value sent to MIDI
 bool panikMode = false;
 int mainVolume = 100;             /*display */
 bool volChange = false;
 
+
+//Pressure
+float pressureDiff;             /*display */
+bool bellowsMode = false;         /*display */
+const int defaultPressureSensitivity = 40;
+int pressureSensitivity = defaultPressureSensitivity;    /*display */
+int pressureZero = 25;            /*display somewhere*/ //Lower bound
+float currentPressure = 0;         //Raw reading mapped 0-250
+int pressureVelocity = 0;         //currentPressure mapped 0-127, value sent to MIDI
 bool pressureConnected = false;
 
 //Envelope
-float filter = 0.8;
+float filter = 0.1;
 float nfilter;
 
 //Display

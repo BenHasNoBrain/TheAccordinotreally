@@ -1,0 +1,22 @@
+END:	bellowsMode
+HOME:	Default pressure sensitivity
+PGDWN:	PS -5
+PGUP:	PS +5
+INSERT:	Vol +5
+DELETE:	Vol -5
+
+SPACE:	panik
+
+F5:	key +12
+F6:	key -12
+LEFT:	key +7
+RIGHT:	key -7
+UP:	key +1
+DOWN:	key -1
+
+F1:	PZero -5
+F2:	PZero +5
+F3:	filter -0.1
+F4:	filter +0.1
+
+ESC:	Recalibrate PS

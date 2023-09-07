@@ -1,9 +1,4 @@
-long lowerAtmos = 0;
-long upperAtmos = 0;
-
 void setup_Midi() {
-  lowerAtmos = averagePressure - 300;
-  upperAtmos = averagePressure + 300;
 
   TinyUSB_Device_Init(0);
   usb_midi.setStringDescriptor("The Accordionotreally");
@@ -20,7 +15,7 @@ void midi_stuff() {
       setPressure();
     }
   } else  {
-    pressureVelocity = 127;
+    MIDI.sendControlChange(7, 127, 1); //Use 1 channel to control volume sliders in DAW
   }
 
   sendMIDI_KB();
@@ -32,17 +27,14 @@ void midi_stuff() {
 
 void setPressure()  {
   pressureVelocity = map(currentPressure, 0, pressureSensitivity, 0, 127);  //Needs to be here otherwise fluctuates all over the place
-  //MIDI.sendAfterTouch(pressureVelocity, 1);
-  //MIDI.sendAfterTouch(pressureVelocity, 2);
 
-  MIDI.sendControlChange(7, pressureVelocity, 1);
-  MIDI.sendControlChange(7, pressureVelocity, 2);
+  MIDI.sendControlChange(7, pressureVelocity, 1); //Use 1 channel to control volume sliders in DAW
 }
 
 void sendMIDI_KB() {
   for (int i = 0; i < 5; i++)  {
     if ((fingers[i] == currentlyOn[i]) && (fingers[i] != 0)) {
-      MIDI.sendNoteOn(fingers[i], pressureVelocity, 1);
+      MIDI.sendNoteOn(fingers[i], 127, 1);
     } else if (fingers[i] != currentlyOn[i])  {
       MIDI.sendNoteOff(currentlyOn[i], 0, 1);
       currentlyOn[i] = 0;
@@ -54,7 +46,7 @@ void sendMIDI_KB() {
 void sendMIDI_Bass()  {
   for (byte i = 0; i < 9; i++)  {
     if (bassOn[i] != 0) {
-      MIDI.sendNoteOn(bassOn[i], pressureVelocity, 2);
+      MIDI.sendNoteOn(bassOn[i], 127, 2);
     }
   }
 
