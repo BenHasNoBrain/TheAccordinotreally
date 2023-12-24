@@ -1,3 +1,5 @@
+byte bassMode = 0;
+
 byte bassValues[132][3] = {
   {0, 0, 0} /*DONUT MODIFY*/, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                // 0 F9 0 F5 F3 F1 F2 F12
   {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                 // 0 F10 F8 F6 F4 TAB ` 0
@@ -18,23 +20,23 @@ byte bassValues[132][3] = {
   {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}                                                              // 0 0 0 F7
 };
 byte freeBassValues[132][3] = {
-  {0, 0, 0} /*DONUT MODIFY*/, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                // 0 F9 0 F5 F3 F1 F2 F12
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                 // 0 F10 F8 F6 F4 TAB ` 0
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {13, 0, 25}, {17, 0, 29}, {0, 0, 0},             // 0 LALT LSFT LCTRL q 1 0
-  {0, 0, 0}, {0, 0, 0}, {37, 40, 32}, {32, 36, 39}, {37, 32, 41}, {20, 0, 32}, {24, 0, 36}, {0, 0, 0},    // 0 0 z s a w 2 0
-  {0, 0, 0}, {39, 42, 34}, {32, 35, 39}, {39, 43, 34}, {15, 0, 27}, {26, 0, 38}, {19, 0, 31}, {0, 0, 0},  // 0 c x d e 4 3 0
-  {0, 0, 0}, {0, 0, 0}, {34, 37, 41}, {34, 38, 41}, {17, 0, 29}, {22, 0, 34}, {21, 0, 33}, {0, 0, 0},     // 0 ' ' v f t r 5 0
-  {0, 0, 0}, {36, 39, 43}, {41, 44, 36}, {36, 40, 43}, {41, 45, 36}, {24, 0, 36}, {28, 0, 40}, {0, 0, 0}, // 0 n b h g y 6 0
-  {0, 0, 0}, {0, 0, 0}, {43, 46, 38}, {43, 47, 38}, {19, 0, 31}, {23, 0, 35}, {30, 0, 42}, {0, 0, 0},     // 0 0 m j u 7 8 0
-  {0, 0, 0}, {38, 41, 45}, {38, 42, 45}, {26, 0, 38}, {21, 0, 33}, {32, 0, 44}, {25, 0, 37}, {0, 0, 0},   // 0 ',' k i o '0' 9 0
-  {0, 0, 0}, {45, 48, 40}, {40, 43, 47}, {45, 49, 40}, {40, 44, 47}, {28, 0, 40}, {27, 0, 39}, {0, 0, 0}, // 0 . / l ; p - 0
-  {0, 0, 0}, {0, 0, 0}, {47, 51, 42}, {0, 0, 0}, {23, 0, 35}, {34, 0, 46}, {0, 0, 0}, {0, 0, 0},          // 0 0 ' 0 [ = 0 0
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {30, 0, 42}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},               // 0 CAPS 0 RHFT ENTER ] 0 \\ 0 0
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                 // 0 0 0 0 0 BCKSP 0
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                 // 0 n1 0 n4 n7 0 0 0
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                 // n0 n. n2 n5 n6 n8 ESC NUMLCK
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                 //F11 n+ n3 n- n* n9 SCRLL 0
-  {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}                                                              // 0 0 0 F7
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {37, 0, 0}, {41, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {49, 0, 0}, {48, 0, 0}, {53, 0, 0}, {32, 0, 0}, {36, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {53, 0, 0}, {44, 0, 0}, {55, 0, 0}, {39, 0, 0}, {38, 0, 0}, {43, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {46, 0, 0}, {50, 0, 0}, {41, 0, 0}, {34, 0, 0}, {45, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {48, 0, 0}, {53, 0, 0}, {52, 0, 0}, {57, 0, 0}, {36, 0, 0}, {40, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {55, 0, 0}, {59, 0, 0}, {43, 0, 0}, {47, 0, 0}, {42, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {50, 0, 0}, {54, 0, 0}, {38, 0, 0}, {45, 0, 0}, {0, 0, 0}, {49, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {57, 0, 0}, {52, 0, 0}, {61, 0, 0}, {56, 0, 0}, {40, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {63, 0, 0}, {0, 0, 0}, {47, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {42, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {44, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {46, 0, 0}, {0, 0, 0}, {51, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, 
+{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}
 };
 
 
@@ -101,8 +103,10 @@ void scan_Bass()  {
 
       
       case 41: //SPACE
+        if (bassMode == 0)  {bassMode = 1;} else {bassMode = 0;}
         panik();
         return;
+        break;
 
       //Octave control
       case 3: //F5
@@ -160,7 +164,7 @@ void scan_Bass()  {
         return;
         break;
       case 20: //LEFT CONTROL
-        calibratePressureSensor();
+        setPressureSensor();
         dispMode = 4;
         return;
         break;
@@ -234,7 +238,16 @@ void applyChords()  {
     if (bassSent[i] == 0) {
       if ((bassList[i] != 0) && (bassCurrentlyOn[i] != 0)) {
         if (bassList[i] == bassCurrentlyOn[i])  { //bassList[x, y, z] vs bassCurrentlyOn[x, y, z]
-          int tmp[3] = {bassValues[bassList[i]][0] + keyModifier, bassValues[bassList[i]][1] + keyModifier, bassValues[bassList[i]][2] + keyModifier};
+          int tmp[3] = {0, 0, 0};
+          if (bassMode == 0) {
+            tmp[0] = bassValues[bassList[i]][0] + keyModifier;
+            tmp[1] = bassValues[bassList[i]][1] + keyModifier;
+            tmp[2] = bassValues[bassList[i]][2] + keyModifier;
+          } else {
+            tmp[0] = freeBassValues[bassList[i]][0] + keyModifier;
+            tmp[1] = freeBassValues[bassList[i]][1] + keyModifier;
+            tmp[2] = freeBassValues[bassList[i]][2] + keyModifier;
+          }
           for (byte j = 0; j < 3; j++)  {
             if (tmp[j] != 0)  {
               //Check if note is already playing
@@ -261,7 +274,16 @@ void applyChords()  {
         }
         bassSent[i] = 1;  //Once note is sent ON, then mark as sent to not repeat for held note
       } else if (bassList[i] != bassCurrentlyOn[i]) {
-          int tmp[3] = {bassValues[bassCurrentlyOn[i]][0] + keyModifier, bassValues[bassCurrentlyOn[i]][1] + keyModifier, bassValues[bassCurrentlyOn[i]][2] + keyModifier};
+        int tmp[3] = {0, 0, 0};
+          if (bassMode == 0) {
+            tmp[0] = bassValues[bassCurrentlyOn[i]][0] + keyModifier;
+            tmp[1] = bassValues[bassCurrentlyOn[i]][1] + keyModifier;
+            tmp[2] = bassValues[bassCurrentlyOn[i]][2] + keyModifier;
+          } else  {
+            tmp[0] = freeBassValues[bassCurrentlyOn[i]][0] + keyModifier;
+            tmp[1] = freeBassValues[bassCurrentlyOn[i]][1] + keyModifier;
+            tmp[2] = freeBassValues[bassCurrentlyOn[i]][2] + keyModifier;
+          }
           //If different, i.e. if bassList = 0 and bassCurrentlyOn = x:
           for (byte j = 0; j < 3; j++)  {
             if (tmp[j] != 0)  {

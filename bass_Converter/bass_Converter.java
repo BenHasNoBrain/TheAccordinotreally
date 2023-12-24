@@ -4,7 +4,7 @@ import java.util.*;
 
 public class bass_Converter	{
 	static String[] keyTable = {"0", "F9", "0", "F5", "F3", "F1", "F2", "F12", "0", "F10", "F8", "F6", "F4", "TAB", "`", "0", "0", "LALT", "LSFT", "LCTRL", "q", "1", "0", "0", "0", "z", "s", "a", "w", "2", "0","0","c","x","d","e","4","3","0","0","' '","v","f","t","r","5","0","0","n","b","h","g","y","6","0","0","0","m","j","u","7","8","0",
-	"0" , "','" ,  "k" ,  "i" ,  "o" ,  "'0'" ,  "9" ,  "0" ,
+	"0" , "," ,  "k" ,  "i" ,  "o" ,  "'0'" ,  "9" ,  "0" ,
 	"0" , "." , "/" ,  "l" , ";" ,  "p" , "-" ,  "0" ,
 	"0" ,"0" ,"'" ,"0" ,"[" ,"=" ,"0" ,"0",
 	"0" ,"CAPS" ,"0" ,"RHFT" ,"ENTER" ,"[", "]" ,"  0" ,"\\\\" ,"  0" ,"  0",
@@ -12,12 +12,10 @@ public class bass_Converter	{
 	"n1" ,"  0" ,"n4" ,"n7" ,"  0" ,"  0" ,"  0",
 	"n0" ,"n." ,"n2" ,"n5" ,"n6" ,"n8" ,"ESC" ,"NUMLCK",
 	"F11" ,"n+" ,"n3" ,"n-" ,"n*" ,"n9" ,"SCRLL",
-	   ""   ,
-	      ""   ,""   ,""   ,""   ,
-		 "F7"};
+	   "", "","","","","F7"};
 
 	static String[] keymap = {
-	    "1", "2", "3", "4", "5", "6", "7", "8", "9","0", "-", "+",
+	    "1", "2", "3", "4", "5", "6", "7", "8", "9","n0", "n-", "n+",
 	    "q","w","e","r","t","y","u","i","o","p","[", "]",
 		"a","s","d" ,"f" ,"g" ,"h" ,"j" ,"k" ,"l" ,";", "'",
 		"z", "x", "c", "v", "b", "n", "m", ",", ".", "/"
@@ -63,19 +61,21 @@ public class bass_Converter	{
 				//System.out.println(Arrays.toString(data));
 
 				Integer lastData = 0;
+				String lastRead = "";
 
 				if (!data[0].equals("//"))	{
 					for (int i = 0; i < data.length; i++)	{
 						for (int j = 0; j < keyTable.length; j++)	{
 							if (keyTable[j].equals(keymap[counter]))	{
-								bassValues[j][0] = Integer.parseInt(data[i]);
-								lastData = Integer.parseInt(data[i]);
-								j = 99;
+								bassValues[j + 1][0] = Integer.parseInt(data[i]);
+								lastData = j; 
+								lastRead = data[i];
+								j = 9999;
 								//System.out.println(keyTable[j]);
 							}
 						}
+						System.out.println(counter + ", " + keymap[counter] + " | " + lastData + "_" + lastRead);
 						if (counter < 44)	{counter++;}
-						System.out.println(counter + ", " + keymap[counter - 1] + " | " + lastData);
 					}
 				}
 
@@ -86,7 +86,7 @@ public class bass_Converter	{
 
 
 			FileWriter outputter = new FileWriter("output.txt", false);
-			outputter.write("byte freeBassValues[132][3] = {");			
+			outputter.write("byte freeBassValues[132][3] = {\r\n");			
 			for (int i = 0; i < bassValues.length; i++)	{
 				String s = Arrays.toString(bassValues[i]);
 				s = s.substring(1, s.length() - 1);
@@ -97,8 +97,12 @@ public class bass_Converter	{
 				} else	{
 					outputter.write("}");
 				}
+
+				if (((i + 1) % 8) == 0)	{
+					outputter.write("\r\n");
+				}
 			}
-			outputter.write("};");
+			outputter.write("\r\n};");
 			outputter.close();
 
 

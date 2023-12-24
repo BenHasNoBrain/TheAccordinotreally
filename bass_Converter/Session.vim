@@ -10,6 +10,7 @@ xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
 let &cpo=s:cpo_save
 unlet s:cpo_save
+set paste
 set autoindent
 set background=dark
 set backspace=indent,eol,start
@@ -63,14 +64,14 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 1resize ' . ((&columns * 118 + 118) / 237)
-exe '2resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 2resize ' . ((&columns * 118 + 118) / 237)
-exe '3resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 3resize ' . ((&columns * 118 + 118) / 237)
-exe '4resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 4resize ' . ((&columns * 118 + 118) / 237)
+exe '1resize ' . ((&lines * 26 + 31) / 63)
+exe 'vert 1resize ' . ((&columns * 1 + 58) / 117)
+exe '2resize ' . ((&lines * 34 + 31) / 63)
+exe 'vert 2resize ' . ((&columns * 1 + 58) / 117)
+exe '3resize ' . ((&lines * 1 + 31) / 63)
+exe 'vert 3resize ' . ((&columns * 115 + 58) / 117)
+exe '4resize ' . ((&lines * 59 + 31) / 63)
+exe 'vert 4resize ' . ((&columns * 115 + 58) / 117)
 argglobal
 balt input.txt
 setlocal keymap=
@@ -153,7 +154,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=
-setlocal path=
+setlocal path=.,/usr/include,,
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -202,12 +203,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 28 - ((23 * winheight(0) + 15) / 30)
+let s:l = 10 - ((0 * winheight(0) + 13) / 26)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 28
-normal! 029|
+keepjumps 10
+normal! 046|
 wincmd w
 argglobal
 if bufexists("bass_Converter.java") | buffer bass_Converter.java | else | edit bass_Converter.java | endif
@@ -292,7 +293,7 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=
-setlocal path=
+setlocal path=.,/usr/include,,
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -341,12 +342,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 73 - ((14 * winheight(0) + 15) / 30)
+let s:l = 78 - ((0 * winheight(0) + 17) / 34)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 73
-normal! 046|
+keepjumps 78
+normal! 0104|
 wincmd w
 argglobal
 if bufexists("input.txt") | buffer input.txt | else | edit input.txt | endif
@@ -480,12 +481,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 2 - ((1 * winheight(0) + 15) / 30)
+let s:l = 1 - ((0 * winheight(0) + 0) / 1)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 02|
+keepjumps 1
+normal! 011|
 wincmd w
 argglobal
 if bufexists("output.txt") | buffer output.txt | else | edit output.txt | endif
@@ -619,26 +620,29 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 15) / 30)
+let s:l = 1 - ((0 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 1
-normal! 0666|
+normal! 022|
 wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 1resize ' . ((&columns * 118 + 118) / 237)
-exe '2resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 2resize ' . ((&columns * 118 + 118) / 237)
-exe '3resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 3resize ' . ((&columns * 118 + 118) / 237)
-exe '4resize ' . ((&lines * 30 + 31) / 63)
-exe 'vert 4resize ' . ((&columns * 118 + 118) / 237)
+4wincmd w
+exe '1resize ' . ((&lines * 26 + 31) / 63)
+exe 'vert 1resize ' . ((&columns * 1 + 58) / 117)
+exe '2resize ' . ((&lines * 34 + 31) / 63)
+exe 'vert 2resize ' . ((&columns * 1 + 58) / 117)
+exe '3resize ' . ((&lines * 1 + 31) / 63)
+exe 'vert 3resize ' . ((&columns * 115 + 58) / 117)
+exe '4resize ' . ((&lines * 59 + 31) / 63)
+exe 'vert 4resize ' . ((&columns * 115 + 58) / 117)
 tabnext 1
 badd +1 bass_Converter.java
-badd +0 input.txt
-badd +0 output.txt
+badd +1 input.txt
+badd +1 output.txt
+badd +30 /mnt/d/Users/yeebe/Desktop/test/wsl_vimrc.txt
+badd +0 ~/.vim_rc
+badd +0 ~/.vimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

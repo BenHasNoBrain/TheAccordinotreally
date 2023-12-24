@@ -36,6 +36,8 @@ int pressureZero = 25;            /*display somewhere*/ //Lower bound
 float currentPressure = 0;         //Raw reading mapped 0-250
 int pressureVelocity = 0;         //currentPressure mapped 0-127, value sent to MIDI
 bool pressureConnected = false;
+float press1 = 0;
+float press2 = 0;
 
 //Envelope
 float filter = 0.1;
@@ -71,11 +73,11 @@ void setup() {
 
   nfilter = 1 - filter;
 
+  setup_Display();            //Accord_Display
   setup_Midi();               //Accord_Midi
   calibratePressureSensor();  //Accord_Pressure
   setup_KB();                 //Accord_KB
   setup_Bass();               //Accord_Bass
-  setup_Display();            //Accord_Display
 }
 
 

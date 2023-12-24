@@ -74,7 +74,9 @@ void display_panik()  {
 void display_pressure() {
   display.clearDisplay();
   display.setCursor(0, 5);
-  display.print(pressureDiff);
+  display.print(press1 - 100000); display.print(" | "); display.print(press2 - 100000);
   display.setCursor(0, 15);
-  display.print(currentPressure);
+  display.print(currentPressure); display.print(" | "); display.print(pressureVelocity);
+  display.setCursor(0, 25);
+  display.print(pressureDiff);
 }

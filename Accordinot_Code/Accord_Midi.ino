@@ -26,7 +26,7 @@ void midi_stuff() {
 
 
 void setPressure()  {
-  pressureVelocity = map(currentPressure, 0, pressureSensitivity, 0, 127);  //Needs to be here otherwise fluctuates all over the place
+  pressureVelocity = map(constrain(currentPressure, 0, pressureSensitivity), 0, pressureSensitivity, 0, 127);  //Needs to be here otherwise fluctuates all over the place
 
   MIDI.sendControlChange(7, pressureVelocity, 1); //Use 1 channel to control volume sliders in DAW
 }
